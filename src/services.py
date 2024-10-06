@@ -1,14 +1,27 @@
+import json
+import re
+from typing import Dict, List
+from src.logger import setup_logger
+# from src.views import get_excel
 
-from src.views import get_excel
-
-
-def find_numbers(num):
-    '''Поиск по телефонным номерам'''
-    current_transactions = []
-    for transaction in get_excel("dict"):
-        if num in transaction["Описание"]:
-            current_transactions.append(transaction)
-    return current_transactions
+logger = setup_logger("services", "logs/services.log")
 
 
-print(*find_numbers('985'), sep='\n')
+def search_transaction_by_mobile_phone(transactions: List[Dict]) -> str:
+    """Функция возвращает транзакции в описании которых есть мобильный номер"""
+    try:
+        mobile_pattern = re.compile(r"\+\d{1,4}")
+        found_transactions = []
+        for transaction in transactions:
+            description = transaction.get("Описание", "")
+            if mobile_pattern.search(description):
+                found_transactions.append(transaction)
+        logger.info("Выполнен поиск по транзакциям с номером телефона")
+        return json.dumps(found_transactions, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f"Возникла ошибка {e}")
+        logger.error(f"Возникла ошибка {e}")
+        return ""
+
+# testing = get_excel("dict")
+# print(search_transaction_by_mobile_phone(testing))
