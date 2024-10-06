@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
+API_KEY_FIN = os.getenv("API_KEY_FIN")
 
 settings = {
     "user_currencies": ["USD", "EUR"],
@@ -43,7 +44,7 @@ def add_to_list():
 
 
 def get_current_stock(sett):
-    url = f"https://financialmodelingprep.com/api/v3/stock/list?apikey=PltnhzgjML0noZote0Z2nK8TZYU9t3cw"
+    url = f"https://financialmodelingprep.com/api/v3/stock/list?apikey={API_KEY_FIN}"
     payload = {}
 
     response = requests.request("GET", url, data=payload)

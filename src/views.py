@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 
 from user_settings import add_to_list, get_current_stock
