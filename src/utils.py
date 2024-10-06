@@ -1,28 +1,15 @@
-def get_greeting():
-    '''Приветствие в зависимости от текущего времени'''
-    pass
+import pandas as pd
 
-def get_cards_last_digits():
-    '''Получает последние 4 цифры карты'''
-    pass
 
-def get_cards_total_spent():
-    '''Получает общую сумму расходов'''
+def get_excel(formatting):
+    get_excel_file = pd.read_excel("../data/operations.xlsx")
+    if formatting == "dataframe":
+        return get_excel_file
+    elif formatting == "dict":
+        return get_excel_file.to_dict(orient="records")
+    else:
+        raise ValueError("Invalid format specified. Use 'dataframe' or 'dict'.")
 
-def get_cards_cashback():
-    '''Получает кешбэк (1 рубль на каждые 100 рублей)'''
-    pass
 
-def get_top_transactions():
-    '''Получает Топ-5 транзакций по сумме платежа'''
-    pass
-
-def get_currency_rates():
-    '''Получает курс валют'''
-    pass
-
-def get_stock_prices():
-    '''Получает стоимость акций из S&P500'''
-    pass
-
+print(get_excel('dataframe'))
 
