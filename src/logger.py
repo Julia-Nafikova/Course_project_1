@@ -4,7 +4,7 @@ import os
 
 
 def setup_logger(name: str, file_logs: str) -> Any:
-    """Ôóíêöèÿ ëîãèðîâàíèÿ"""
+    """Настраивает работу логов"""
     os.makedirs("logs", exist_ok=True)
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
