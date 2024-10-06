@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-from user_settings import add_to_list, get_current_stock
 
 from src.utils import get_excel
+
 
 def hello(current_time):
     """Функция приветствия, возвращающая соответствующее сообщение в зависимости от времени суток."""
@@ -58,9 +58,7 @@ def filtered_cards():
 
 def filtered_top():
     """Функция, возвращающая топ 5 транзакций по платежам"""
-    sort_current_transactions = sorted(
-        current_transactions, reverse=True, key=lambda x: abs(x["Сумма платежа"])
-    )
+    sort_current_transactions = sorted(current_transactions, reverse=True, key=lambda x: abs(x["Сумма платежа"]))
     for transaction in sort_current_transactions:
         top = {
             "date": transaction["Дата платежа"],
@@ -75,7 +73,7 @@ def filtered_top():
 
 
 def final_list(current_date):
-    '''Функция возвращает JSON-ответ с данными'''
+    """Функция возвращает JSON-ответ с данными"""
     generate_json(current_date)
     filtered_cards()
     filtered_top()
@@ -85,6 +83,7 @@ def final_list(current_date):
     transaction_for_print[0]["currency_rates"] = [{}]
     transaction_for_print[0]["stock_prices"] = [{}]
     return transaction_for_print
+
 
 # print(hello("08.11.2021 23:50:17"))
 # print(final_list('01.11.2021 23:50:17'), sep='\n')
