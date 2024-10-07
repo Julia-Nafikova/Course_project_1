@@ -3,7 +3,7 @@ import re
 from typing import Dict, List
 from src.logger import setup_logger
 
-# from src.views import get_excel
+from src.views import get_excel
 
 logger = setup_logger("services", "logs/services.log")
 
@@ -25,5 +25,5 @@ def search_transaction_by_mobile_phone(transactions: List[Dict]) -> str:
         return ""
 
 
-# testing = get_excel("dict")
+testing = get_excel("dict")
 # print(search_transaction_by_mobile_phone(testing))
