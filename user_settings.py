@@ -17,6 +17,7 @@ currency_stock = []
 
 
 def get_current_price(currency):
+    '''Функция обращается через АПИ к сервису и получает актуальную стоимость валюты'''
     url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount=1"
 
     payload = {}
@@ -35,6 +36,7 @@ def get_current_price(currency):
 
 
 def add_to_list():
+    '''Функция добавляет в список значения из пользовательских настроек валюты'''
     for currency in settings["user_currencies"]:
         currency_list.append(get_current_price(currency))
     return currency_list
@@ -44,6 +46,7 @@ def add_to_list():
 
 
 def get_current_stock(sett):
+    '''Функция обращается через АПИ к сервису и получает актуальную стоимость акций'''
     url = f"https://financialmodelingprep.com/api/v3/stock/list?apikey={API_KEY_FIN}"
     payload = {}
 
